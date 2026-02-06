@@ -1,0 +1,117 @@
+/*
+ * Decompiled with CFR 0.152.
+ * 
+ * Could not load the following classes:
+ *  JinRyuu.JRMCore.JRMCoreH
+ *  cpw.mods.fml.relauncher.Side
+ *  cpw.mods.fml.relauncher.SideOnly
+ *  net.minecraft.block.Block
+ *  net.minecraft.block.BlockLeaves
+ *  net.minecraft.client.Minecraft
+ *  net.minecraft.client.renderer.texture.IIconRegister
+ *  net.minecraft.creativetab.CreativeTabs
+ *  net.minecraft.item.Item
+ *  net.minecraft.item.ItemStack
+ *  net.minecraft.util.IIcon
+ *  net.minecraft.world.IBlockAccess
+ *  net.minecraft.world.World
+ *  net.minecraftforge.common.util.ForgeDirection
+ */
+package JinRyuu.DragonBC.common.Blocks.m;
+
+import JinRyuu.DragonBC.common.Blocks.m.ModdedBlocks;
+import JinRyuu.JRMCore.JRMCoreH;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
+import java.util.List;
+import java.util.Random;
+import net.minecraft.block.Block;
+import net.minecraft.block.BlockLeaves;
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.renderer.texture.IIconRegister;
+import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
+import net.minecraft.util.IIcon;
+import net.minecraft.world.IBlockAccess;
+import net.minecraft.world.World;
+import net.minecraftforge.common.util.ForgeDirection;
+
+public class LeafyBlock
+extends BlockLeaves {
+    public static final String[][] leaftypes = new String[][]{{"LeafSakura", "LeafMahagony"}, {"LeafSakuraOpaque", "LeafMahagonyOpaque"}};
+    public static final String[] leaves = new String[]{"Sakura", "Mahagony"};
+
+    public int getBlockColor() {
+        double d0 = 0.5;
+        double d1 = 1.0;
+        return 0xFFFFFF;
+    }
+
+    public int getRenderColor(int p_149741_1_) {
+        return 0xFFFFFF;
+    }
+
+    public int damageDropped(int i) {
+        return super.damageDropped(i);
+    }
+
+    public int getDamageValue(World world, int x, int y, int z) {
+        return world.getBlockMetadata(x, y, z) & 3;
+    }
+
+    @SideOnly(value=Side.CLIENT)
+    public void getSubBlocks(Item item, CreativeTabs tabs, List list) {
+        for (int i = 0; i < leaves.length; ++i) {
+            list.add(new ItemStack(item, 1, i));
+        }
+    }
+
+    @SideOnly(value=Side.CLIENT)
+    public void registerBlockIcons(IIconRegister iconRegister) {
+        for (int i = 0; i < leaftypes.length; ++i) {
+            this.field_150129_M[i] = new IIcon[leaftypes[i].length];
+            for (int j = 0; j < leaftypes[i].length; ++j) {
+                this.field_150129_M[i][j] = iconRegister.registerIcon(JRMCoreH.tjdbcAssts + ":" + leaftypes[i][j]);
+            }
+        }
+    }
+
+    public IIcon getIcon(int side, int meta) {
+        this.setGraphicsLevel(Minecraft.getMinecraft().gameSettings.fancyGraphics);
+        return (meta & 3) == 1 ? this.field_150129_M[this.field_150127_b][1] : this.field_150129_M[this.field_150127_b][0];
+    }
+
+    public String[] func_150125_e() {
+        return leaves;
+    }
+
+    public boolean shouldSideBeRendered(IBlockAccess blockacces, int x, int y, int z, int side) {
+        return true;
+    }
+
+    public boolean renderAsNormalBlock() {
+        return false;
+    }
+
+    public boolean isOpaqueCube() {
+        return false;
+    }
+
+    public Item getItemDropped(int p_149650_1_, Random p_149650_2_, int p_149650_3_) {
+        return Item.getItemFromBlock((Block)ModdedBlocks.SakuraSaplings);
+    }
+
+    public int getFireSpreadSpeed(IBlockAccess world, int x, int y, int z, ForgeDirection face) {
+        return 30;
+    }
+
+    public int getFlammability(IBlockAccess world, int x, int y, int z, ForgeDirection face) {
+        return 10;
+    }
+
+    public int colorMultiplier(IBlockAccess p_149720_1_, int p_149720_2_, int p_149720_3_, int p_149720_4_) {
+        return 0xFFFFFF;
+    }
+}
+

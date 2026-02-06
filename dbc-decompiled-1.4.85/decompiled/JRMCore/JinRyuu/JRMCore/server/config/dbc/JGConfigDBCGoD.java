@@ -1,0 +1,276 @@
+/*
+ * Decompiled with CFR 0.152.
+ * 
+ * Could not load the following classes:
+ *  net.minecraftforge.common.config.Configuration
+ *  net.minecraftforge.common.config.Property
+ */
+package JinRyuu.JRMCore.server.config.dbc;
+
+import JinRyuu.JRMCore.JRMCoreH;
+import JinRyuu.JRMCore.server.config.JGConfigBase;
+import net.minecraftforge.common.config.Configuration;
+import net.minecraftforge.common.config.Property;
+
+public class JGConfigDBCGoD
+extends JGConfigBase {
+    public static final String CATEGORY_FORM_GOD_SERVERSIDED = "God of Destruction";
+    public static final int FLAT_COST = 0;
+    public static final int PERCENTAGE_COST = 1;
+    public static boolean CONFIG_GOD_ENABLED;
+    public static float CONFIG_GOD_ATTRIBUTE_MULTI;
+    public static int CONFIG_GOD_TP_COST;
+    public static int CONFIG_GOD_MIND_REQUIREMENT;
+    public static int CONFIG_GOD_MAX_ALIGNMENT;
+    public static int CONFIG_GOD_LEVEL_REQUIREMENT;
+    public static int CONFIG_GOD_REGARDLESS_LEVEL_REQUIREMENT;
+    public static boolean CONFIG_GOD_IGNORE_BASE_CONFIG;
+    public static boolean CONFIG_GOD_IGNORE_BASE_KI_REGEN_CONFIG;
+    public static String[] CONFIG_GOD_IGNORED_DAMAGE_SOURCES;
+    public static String[] CONFIG_GOD_IGNORED_ENTITIES;
+    public static float CONFIG_GOD_IGNORE_DAMAGE_MULTI;
+    public static boolean CONFIG_GOD_IGNORE_PROJECTILES_ENABLED;
+    public static boolean CONFIG_GOD_AURA_ENABLED;
+    public static boolean CONFIG_GOD_AURA_ENABLED_WITH_AURA;
+    public static float[] CONFIG_GOD_AURA_KI_COST;
+    public static boolean CONFIG_GOD_ENERGY_ENABLED;
+    public static float CONFIG_GOD_ENERGY_DAMAGE_MULTI;
+    public static float[] CONFIG_GOD_ATTRIBUTE_MULTI_RACE;
+    public static boolean cCONFIG_GOD_ENABLED;
+    public static float cCONFIG_GOD_ATTRIBUTE_MULTI;
+    public static int cCONFIG_GOD_TP_COST;
+    public static int cCONFIG_GOD_MIND_REQUIREMENT;
+    public static boolean cCONFIG_GOD_IGNORE_BASE_CONFIG;
+    public static String[] cCONFIG_GOD_IGNORED_DAMAGE_SOURCES;
+    public static String[] cCONFIG_GOD_IGNORED_ENTITIES;
+    public static float cCONFIG_GOD_IGNORE_DAMAGE_MULTI;
+    public static boolean cCONFIG_GOD_IGNORE_PROJECTILES_ENABLED;
+    public static boolean cCONFIG_GOD_AURA_ENABLED;
+    public static boolean cCONFIG_GOD_AURA_ENABLED_WITH_AURA;
+    public static boolean cCONFIG_GOD_ENERGY_ENABLED;
+    public static float cCONFIG_GOD_ENERGY_DAMAGE_MULTI;
+    public static float[] cCONFIG_GOD_ATTRIBUTE_MULTI_RACE;
+
+    public static void init(Configuration config) {
+        config.load();
+        JGConfigDBCGoD.init_god(config);
+        config.save();
+    }
+
+    private static void init_god(Configuration config) {
+        int i;
+        String form = CATEGORY_FORM_GOD_SERVERSIDED;
+        String CATEGORY = CATEGORY_FORM_GOD_SERVERSIDED;
+        String percentage = " (Percentage)";
+        String warning = " Change only to your own responsibility! Having too high multiplier will cause glitches!";
+        String server = "Server Sided!";
+        int min = 0;
+        int max = 100000;
+        String title = "Attribute Multiplier";
+        String desc = title + " Change only to your own responsibility! Having too high multiplier will cause glitches!" + JGConfigDBCGoD.getDefault2("" + min, "" + max) + JGConfigDBCGoD.getDefaultValue2("3.8");
+        Property property = config.get(CATEGORY, "God of Destruction " + title, 3.8);
+        property.comment = "Server Sided! " + desc;
+        cCONFIG_GOD_ATTRIBUTE_MULTI = (float)property.getDouble();
+        if (cCONFIG_GOD_ATTRIBUTE_MULTI < (float)min) {
+            cCONFIG_GOD_ATTRIBUTE_MULTI = min;
+        } else if (cCONFIG_GOD_ATTRIBUTE_MULTI > (float)max) {
+            cCONFIG_GOD_ATTRIBUTE_MULTI = max;
+        }
+        CONFIG_GOD_ATTRIBUTE_MULTI = cCONFIG_GOD_ATTRIBUTE_MULTI;
+        min = 0;
+        max = 100000;
+        String defS = "";
+        String[] defaultList = new String[]{"1.0", "1.0", "1.0", "1.0", "1.0", "0.75"};
+        for (int j = 0; j < defaultList.length; ++j) {
+            defaultList[j] = JRMCoreH.Races[j] + " " + defaultList[j];
+            defS = defS + defaultList[j];
+        }
+        title = "Attribute Multiplier per Race";
+        desc = title + " Change only to your own responsibility! Having too high multiplier will cause glitches!" + JGConfigDBCGoD.getDefault2("" + min, "" + max) + JGConfigDBCGoD.getDefaultValue2(defS);
+        property = config.get(CATEGORY, "God of Destruction " + title, defaultList);
+        property.comment = "Server Sided! " + desc;
+        String[] listString = property.getStringList();
+        for (int j = 0; j < listString.length; ++j) {
+            float value;
+            String[] values = listString[j].split(" ");
+            JGConfigDBCGoD.cCONFIG_GOD_ATTRIBUTE_MULTI_RACE[j] = value = Float.parseFloat(values[1]);
+            if (cCONFIG_GOD_ATTRIBUTE_MULTI_RACE[j] < (float)min) {
+                JGConfigDBCGoD.cCONFIG_GOD_ATTRIBUTE_MULTI_RACE[j] = min;
+            } else if (cCONFIG_GOD_ATTRIBUTE_MULTI_RACE[j] > (float)max) {
+                JGConfigDBCGoD.cCONFIG_GOD_ATTRIBUTE_MULTI_RACE[j] = max;
+            }
+            JGConfigDBCGoD.CONFIG_GOD_ATTRIBUTE_MULTI_RACE[j] = cCONFIG_GOD_ATTRIBUTE_MULTI_RACE[j];
+        }
+        min = -1;
+        max = 2000000000;
+        title = "TP Cost";
+        desc = title + JGConfigDBCGoD.getDefault("" + min, "" + max) + JGConfigDBCGoD.getDefaultValue2("50000");
+        property = config.get(CATEGORY, "God of Destruction " + title, 50000);
+        property.comment = "Server Sided! " + desc;
+        cCONFIG_GOD_TP_COST = property.getInt();
+        if (cCONFIG_GOD_TP_COST < min) {
+            cCONFIG_GOD_TP_COST = min;
+        } else if (cCONFIG_GOD_TP_COST > max) {
+            cCONFIG_GOD_TP_COST = max;
+        }
+        CONFIG_GOD_TP_COST = cCONFIG_GOD_TP_COST;
+        min = 0;
+        max = 2000000000;
+        title = "Mind Cost/Requirement";
+        desc = title + JGConfigDBCGoD.getDefault("" + min, "" + max) + JGConfigDBCGoD.getDefaultValue2("10");
+        property = config.get(CATEGORY, "God of Destruction " + title, 10);
+        property.comment = "Server Sided! " + desc;
+        cCONFIG_GOD_MIND_REQUIREMENT = property.getInt();
+        if (cCONFIG_GOD_MIND_REQUIREMENT < min) {
+            cCONFIG_GOD_MIND_REQUIREMENT = min;
+        } else if (cCONFIG_GOD_MIND_REQUIREMENT > max) {
+            cCONFIG_GOD_MIND_REQUIREMENT = max;
+        }
+        CONFIG_GOD_MIND_REQUIREMENT = cCONFIG_GOD_MIND_REQUIREMENT;
+        min = 0;
+        max = 1000000;
+        title = "Level Requirement";
+        desc = title + JGConfigDBCGoD.getDefault("" + min, "" + max) + JGConfigDBCGoD.getDefaultValue2("200");
+        property = config.get(CATEGORY, "God of Destruction " + title, 200);
+        property.comment = "Server Sided! " + desc;
+        CONFIG_GOD_LEVEL_REQUIREMENT = property.getInt();
+        if (CONFIG_GOD_LEVEL_REQUIREMENT < min) {
+            CONFIG_GOD_LEVEL_REQUIREMENT = min;
+        } else if (CONFIG_GOD_LEVEL_REQUIREMENT > max) {
+            CONFIG_GOD_LEVEL_REQUIREMENT = max;
+        }
+        min = 0;
+        max = 100;
+        title = "Regardless Level Requirement";
+        desc = title + JGConfigDBCGoD.getDefault("" + min, "" + max) + JGConfigDBCGoD.getDefaultValue2("10");
+        property = config.get(CATEGORY, "God of Destruction " + title, 10);
+        property.comment = "Server Sided! " + desc;
+        CONFIG_GOD_REGARDLESS_LEVEL_REQUIREMENT = property.getInt();
+        if (CONFIG_GOD_REGARDLESS_LEVEL_REQUIREMENT < min) {
+            CONFIG_GOD_REGARDLESS_LEVEL_REQUIREMENT = min;
+        } else if (CONFIG_GOD_REGARDLESS_LEVEL_REQUIREMENT > max) {
+            CONFIG_GOD_REGARDLESS_LEVEL_REQUIREMENT = max;
+        }
+        title = "Ignore Base Attribute Multiplier Config while in GoD Enabled";
+        desc = "(true = Enabled, false = Disabled)" + JGConfigDBCGoD.getDefaultValue2("true");
+        property = config.get(CATEGORY, "God of Destruction " + title, true);
+        property.comment = "Server Sided! " + desc;
+        CONFIG_GOD_IGNORE_BASE_CONFIG = cCONFIG_GOD_IGNORE_BASE_CONFIG = property.getBoolean();
+        title = "Ignore Base Ki Regen Config Multiplier while in GoD Enabled";
+        desc = "(true = Enabled, false = Disabled)" + JGConfigDBCGoD.getDefaultValue2("true");
+        property = config.get(CATEGORY, "God of Destruction " + title, true);
+        property.comment = "Server Sided! " + desc;
+        CONFIG_GOD_IGNORE_BASE_KI_REGEN_CONFIG = property.getBoolean();
+        defaultList = new String[]{""};
+        title = "Can Ignore these Damage Source Damages";
+        desc = "List of Damage Source names which this form can ignore.";
+        property = config.get(CATEGORY, "God of Destruction " + title, defaultList);
+        property.comment = "Server Sided! " + desc;
+        String[] list = property.getStringList();
+        cCONFIG_GOD_IGNORED_DAMAGE_SOURCES = new String[list.length];
+        CONFIG_GOD_IGNORED_DAMAGE_SOURCES = new String[list.length];
+        for (i = 0; i < list.length; ++i) {
+            JGConfigDBCGoD.cCONFIG_GOD_IGNORED_DAMAGE_SOURCES[i] = list[i];
+            JGConfigDBCGoD.CONFIG_GOD_IGNORED_DAMAGE_SOURCES[i] = list[i];
+        }
+        defaultList = new String[]{""};
+        title = "Can Ignore these Entity Damages";
+        desc = "List of Entity names which this form can ignore.";
+        property = config.get(CATEGORY, "God of Destruction " + title, defaultList);
+        property.comment = "Server Sided! " + desc;
+        list = property.getStringList();
+        cCONFIG_GOD_IGNORED_ENTITIES = new String[list.length];
+        CONFIG_GOD_IGNORED_ENTITIES = new String[list.length];
+        for (i = 0; i < list.length; ++i) {
+            JGConfigDBCGoD.cCONFIG_GOD_IGNORED_ENTITIES[i] = list[i];
+            JGConfigDBCGoD.CONFIG_GOD_IGNORED_ENTITIES[i] = list[i];
+        }
+        min = 0;
+        max = 100000;
+        title = "Ignore Damage Multiplier";
+        desc = "In Destroyer Aura Mode when a GoD form user is attacked then they can completely negate the damage dealt to them IF their melee attack multiplied by this value is stronger than the received damage" + JGConfigDBCGoD.getDefault("" + min, "" + max) + JGConfigDBCGoD.getDefaultValue2("0.8");
+        property = config.get(CATEGORY, "God of Destruction " + title, 0.8);
+        property.comment = "Server Sided! " + desc;
+        cCONFIG_GOD_IGNORE_DAMAGE_MULTI = (float)property.getDouble();
+        if (cCONFIG_GOD_IGNORE_DAMAGE_MULTI < (float)min) {
+            cCONFIG_GOD_IGNORE_DAMAGE_MULTI = min;
+        } else if (cCONFIG_GOD_IGNORE_DAMAGE_MULTI > (float)max) {
+            cCONFIG_GOD_IGNORE_DAMAGE_MULTI = max;
+        }
+        CONFIG_GOD_IGNORE_DAMAGE_MULTI = cCONFIG_GOD_IGNORE_DAMAGE_MULTI;
+        title = "Ignore Projectile Entity Damages Enabled";
+        desc = "(true = Enabled, false = Disabled)" + JGConfigDBCGoD.getDefaultValue2("true");
+        property = config.get(CATEGORY, "God of Destruction " + title, true);
+        property.comment = "Server Sided! " + desc;
+        CONFIG_GOD_IGNORE_PROJECTILES_ENABLED = cCONFIG_GOD_IGNORE_PROJECTILES_ENABLED = property.getBoolean();
+        title = "Form Enabled";
+        desc = "(true = Enabled, false = Disabled)" + JGConfigDBCGoD.getDefaultValue2("true");
+        property = config.get(CATEGORY, "God of Destruction " + title, true);
+        property.comment = "Server Sided! " + desc;
+        CONFIG_GOD_ENABLED = cCONFIG_GOD_ENABLED = property.getBoolean();
+        title = "Destroyer Aura Enabled";
+        desc = "(true = Enabled, false = Disabled)" + JGConfigDBCGoD.getDefaultValue2("true");
+        property = config.get(CATEGORY, "God of Destruction " + title, true);
+        property.comment = "Server Sided! " + desc;
+        CONFIG_GOD_AURA_ENABLED = cCONFIG_GOD_AURA_ENABLED = property.getBoolean();
+        title = "Destroyer Aura Only in Turbo Mode Enabled";
+        desc = "Destroyer Aura is ONLY enabled in Turbo Aura Mode. (true = Enabled, false = Disabled)" + JGConfigDBCGoD.getDefaultValue2("true");
+        property = config.get(CATEGORY, "God of Destruction " + title, true);
+        property.comment = "Server Sided! " + desc;
+        CONFIG_GOD_AURA_ENABLED_WITH_AURA = cCONFIG_GOD_AURA_ENABLED_WITH_AURA = property.getBoolean();
+        title = "Destroyer Energy Enabled";
+        desc = "All Custom Ki Attacks are converted to Destroyer Attacks. (true = Enabled, false = Disabled)" + JGConfigDBCGoD.getDefaultValue2("true");
+        property = config.get(CATEGORY, "God of Destruction " + title, true);
+        property.comment = "Server Sided! " + desc;
+        CONFIG_GOD_ENERGY_ENABLED = cCONFIG_GOD_ENERGY_ENABLED = property.getBoolean();
+        min = 0;
+        max = 100000;
+        title = "Destroyer Energy Damage Multiplier";
+        desc = "When a Destroyer Ki Attack hits another Ki Attack then it instantly destroy the other one IF their damage multiplied by this value is stronger than the received damage" + JGConfigDBCGoD.getDefault("" + min, "" + max) + JGConfigDBCGoD.getDefaultValue2("0.8");
+        property = config.get(CATEGORY, "God of Destruction " + title, 0.8);
+        property.comment = "Server Sided! " + desc;
+        cCONFIG_GOD_ENERGY_DAMAGE_MULTI = (float)property.getDouble();
+        if (cCONFIG_GOD_ENERGY_DAMAGE_MULTI < (float)min) {
+            cCONFIG_GOD_ENERGY_DAMAGE_MULTI = min;
+        } else if (cCONFIG_GOD_ENERGY_DAMAGE_MULTI > (float)max) {
+            cCONFIG_GOD_ENERGY_DAMAGE_MULTI = max;
+        }
+        CONFIG_GOD_ENERGY_DAMAGE_MULTI = cCONFIG_GOD_ENERGY_DAMAGE_MULTI;
+        min = 0;
+        max = 100;
+        title = "Max Alignment Limit";
+        desc = "Using the Form above this Alignment value is not possible" + JGConfigDBCGoD.getDefault("" + min, "" + max) + JGConfigDBCGoD.getDefaultValue2("80");
+        property = config.get(CATEGORY, "God of Destruction " + title, 80);
+        property.comment = "Server Sided! " + desc;
+        CONFIG_GOD_MAX_ALIGNMENT = property.getInt();
+        if (CONFIG_GOD_MAX_ALIGNMENT < min) {
+            CONFIG_GOD_MAX_ALIGNMENT = min;
+        } else if (CONFIG_GOD_MAX_ALIGNMENT > max) {
+            CONFIG_GOD_MAX_ALIGNMENT = max;
+        }
+        min = 0;
+        max = 1000000000;
+        title = "Destroyer Aura Ki Cost";
+        desc = "Aura Cost per Server update. (FlatCost PercentageCost)" + JGConfigDBCGoD.getDefault("" + min, "" + max) + JGConfigDBCGoD.getDefaultValue2("10 0.0025");
+        property = config.get(CATEGORY, "God of Destruction " + title, "10 0.0025");
+        property.comment = "Server Sided! " + desc;
+        defaultList = property.getString().split(" ");
+        for (i = 0; i < defaultList.length; ++i) {
+            float value;
+            JGConfigDBCGoD.CONFIG_GOD_AURA_KI_COST[i] = value = Float.parseFloat(defaultList[i]);
+            if (CONFIG_GOD_AURA_KI_COST[i] < (float)min) {
+                JGConfigDBCGoD.CONFIG_GOD_AURA_KI_COST[i] = min;
+                continue;
+            }
+            if (!(CONFIG_GOD_AURA_KI_COST[i] > (float)max)) continue;
+            JGConfigDBCGoD.CONFIG_GOD_AURA_KI_COST[i] = max;
+        }
+    }
+
+    static {
+        CONFIG_GOD_AURA_KI_COST = new float[2];
+        CONFIG_GOD_ATTRIBUTE_MULTI_RACE = new float[JRMCoreH.Races.length];
+        cCONFIG_GOD_ATTRIBUTE_MULTI_RACE = new float[JRMCoreH.Races.length];
+    }
+}
+

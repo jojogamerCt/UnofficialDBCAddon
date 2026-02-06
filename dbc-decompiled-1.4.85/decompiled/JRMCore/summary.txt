@@ -1,0 +1,16 @@
+Summary for JRMCore-v1.3.51-deobf.jar
+Decompiled with CFR 0.152
+
+
+JinRyuu.JRMCore.JRMCoreCliTicH
+----------------------------
+
+onTickInGame()
+  Unable to fully structure code
+
+
+JinRyuu.JRMCore.JRMCoreH
+----------------------------
+
+clearEmptyFamiliesNBTData(net.minecraft.server.MinecraftServer )
+  Loose catch block

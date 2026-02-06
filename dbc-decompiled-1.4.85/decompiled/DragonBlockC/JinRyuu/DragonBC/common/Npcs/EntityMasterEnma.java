@@ -1,0 +1,57 @@
+/*
+ * Decompiled with CFR 0.152.
+ * 
+ * Could not load the following classes:
+ *  cpw.mods.fml.relauncher.Side
+ *  cpw.mods.fml.relauncher.SideOnly
+ *  net.minecraft.entity.SharedMonsterAttributes
+ *  net.minecraft.entity.player.EntityPlayer
+ *  net.minecraft.item.ItemStack
+ *  net.minecraft.world.World
+ */
+package JinRyuu.DragonBC.common.Npcs;
+
+import JinRyuu.DragonBC.common.DBCConfig;
+import JinRyuu.DragonBC.common.Npcs.EntityDBCKami;
+import JinRyuu.DragonBC.common.mod_DragonBC;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
+import net.minecraft.entity.SharedMonsterAttributes;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.ItemStack;
+import net.minecraft.world.World;
+
+public class EntityMasterEnma
+extends EntityDBCKami {
+    public int randomSoundDelay = 0;
+
+    public EntityMasterEnma(World par1World) {
+        super(par1World);
+        this.experienceValue = 0;
+        this.width = 2.0f * DBCConfig.EnmaScale;
+        this.height = 4.0f * DBCConfig.EnmaScale;
+        this.name = "Master Enma";
+    }
+
+    protected void applyEntityAttributes() {
+        super.applyEntityAttributes();
+        this.getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(10000.0);
+    }
+
+    public boolean interact(EntityPlayer par1EntityPlayer) {
+        boolean var3;
+        ItemStack var2 = par1EntityPlayer.inventory.getCurrentItem();
+        boolean bl = var3 = var2 != null;
+        if (this.isEntityAlive()) {
+            par1EntityPlayer.openGui((Object)mod_DragonBC.instance, 10, par1EntityPlayer.worldObj, (int)this.posX, (int)this.posY, (int)this.posZ);
+            return true;
+        }
+        return super.interact(par1EntityPlayer);
+    }
+
+    @SideOnly(value=Side.CLIENT)
+    public String getTexture() {
+        return "jinryuudragonbc:npcs/enma.png";
+    }
+}
+

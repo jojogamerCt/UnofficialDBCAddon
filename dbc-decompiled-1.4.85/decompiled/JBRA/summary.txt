@@ -1,0 +1,2 @@
+Summary for JBRA-Client-v1.6.52-deobf.jar
+Decompiled with CFR 0.152

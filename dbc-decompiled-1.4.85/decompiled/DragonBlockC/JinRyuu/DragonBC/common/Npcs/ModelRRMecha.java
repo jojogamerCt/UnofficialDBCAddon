@@ -1,0 +1,291 @@
+/*
+ * Decompiled with CFR 0.152.
+ * 
+ * Could not load the following classes:
+ *  net.minecraft.client.model.ModelBase
+ *  net.minecraft.client.model.ModelRenderer
+ *  net.minecraft.entity.Entity
+ *  net.minecraft.util.MathHelper
+ *  org.lwjgl.opengl.GL11
+ */
+package JinRyuu.DragonBC.common.Npcs;
+
+import JinRyuu.DragonBC.common.Npcs.EntityRRMecha;
+import net.minecraft.client.model.ModelBase;
+import net.minecraft.client.model.ModelRenderer;
+import net.minecraft.entity.Entity;
+import net.minecraft.util.MathHelper;
+import org.lwjgl.opengl.GL11;
+
+public class ModelRRMecha
+extends ModelBase {
+    public ModelRenderer Base1;
+    public ModelRenderer ArmL;
+    public ModelRenderer ArmR;
+    public ModelRenderer LegL;
+    public ModelRenderer LegR;
+    public ModelRenderer Spine1;
+    public ModelRenderer Belly1;
+    public ModelRenderer Head1;
+    public ModelRenderer BottomBase;
+    public ModelRenderer Extra10;
+    public ModelRenderer Extra20;
+    public ModelRenderer Extra30;
+    public ModelRenderer Extra40;
+    public ModelRenderer ShoulderL;
+    public ModelRenderer ShoulderR;
+    public ModelRenderer Back1;
+    public ModelRenderer Back2;
+    public ModelRenderer BackTop1;
+    public ModelRenderer BackTop2;
+    public ModelRenderer Belly2;
+    public ModelRenderer Belly3;
+    public ModelRenderer HeadTop;
+    public ModelRenderer HeadFront;
+    public ModelRenderer HeadBack;
+    public ModelRenderer BottomBack;
+    public ModelRenderer BottomFront;
+    public ModelRenderer BottomBack2;
+    public ModelRenderer Extra11;
+    public ModelRenderer Extra12;
+    public ModelRenderer Extra21;
+    public ModelRenderer Extra22;
+    public ModelRenderer ArmL2;
+    public ModelRenderer ArmL3;
+    public ModelRenderer ArmL4;
+    public ModelRenderer ArmR2;
+    public ModelRenderer ArmR3;
+    public ModelRenderer ArmR4;
+    public ModelRenderer LegL2;
+    public ModelRenderer LegL3;
+    public ModelRenderer LegR2;
+    public ModelRenderer LegR3;
+
+    public ModelRRMecha() {
+        this.textureWidth = 128;
+        this.textureHeight = 128;
+        this.BottomFront = new ModelRenderer((ModelBase)this, 47, 79);
+        this.BottomFront.setRotationPoint(0.0f, 0.0f, 0.0f);
+        this.BottomFront.addBox(-3.5f, 7.2f, 5.0f, 7, 4, 6, 0.0f);
+        this.setRotateAngle(this.BottomFront, -0.7285004f, 0.0f, 0.0f);
+        this.Extra12 = new ModelRenderer((ModelBase)this, 112, 0);
+        this.Extra12.setRotationPoint(0.0f, 0.0f, 0.0f);
+        this.Extra12.addBox(-1.5f, 2.7f, -2.4f, 3, 1, 1, 0.0f);
+        this.Extra30 = new ModelRenderer((ModelBase)this, 104, 0);
+        this.Extra30.setRotationPoint(0.0f, 0.0f, 0.0f);
+        this.Extra30.addBox(-4.9f, 1.3f, -1.9f, 2, 2, 1, 0.0f);
+        this.setRotateAngle(this.Extra30, 0.0f, 0.3630285f, 0.21642083f);
+        this.ArmL = new ModelRenderer((ModelBase)this, 3, 86);
+        this.ArmL.setRotationPoint(8.5f, 0.1f, 4.9f);
+        this.ArmL.addBox(-0.6f, -0.4f, -1.2f, 2, 7, 2, 0.0f);
+        this.setRotateAngle(this.ArmL, 0.11082841f, 0.0f, -0.27576202f);
+        this.Spine1 = new ModelRenderer((ModelBase)this, 0, 21);
+        this.Spine1.setRotationPoint(0.0f, 0.0f, 0.0f);
+        this.Spine1.addBox(-7.5f, -1.2f, 1.7f, 15, 10, 6, 0.0f);
+        this.setRotateAngle(this.Spine1, 0.7749262f, 0.0f, 0.0f);
+        this.Belly3 = new ModelRenderer((ModelBase)this, 0, 67);
+        this.Belly3.setRotationPoint(0.0f, 0.0f, 0.0f);
+        this.Belly3.addBox(-5.0f, 5.0f, -4.8f, 10, 6, 1, 0.0f);
+        this.ArmL2 = new ModelRenderer((ModelBase)this, 1, 96);
+        this.ArmL2.setRotationPoint(0.0f, 0.0f, 0.0f);
+        this.ArmL2.addBox(-0.6f, 5.8f, 1.5f, 3, 7, 3, 0.0f);
+        this.setRotateAngle(this.ArmL2, -0.4553564f, 0.0f, 0.0f);
+        this.ArmR = new ModelRenderer((ModelBase)this, 18, 86);
+        this.ArmR.setRotationPoint(-8.5f, 0.1f, 4.9f);
+        this.ArmR.addBox(-1.3f, -0.4f, -1.1f, 2, 7, 2, 0.0f);
+        this.setRotateAngle(this.ArmR, 0.11082841f, 0.0f, 0.27576202f);
+        this.ArmL4 = new ModelRenderer((ModelBase)this, 1, 114);
+        this.ArmL4.setRotationPoint(0.0f, 0.0f, 0.0f);
+        this.ArmL4.addBox(-0.6f, 12.6f, 1.0f, 3, 4, 4, 0.0f);
+        this.setRotateAngle(this.ArmL4, -0.4553564f, 0.16475908f, 0.0f);
+        this.ArmR4 = new ModelRenderer((ModelBase)this, 17, 114);
+        this.ArmR4.setRotationPoint(0.0f, 0.0f, 0.0f);
+        this.ArmR4.addBox(-2.4f, 12.6f, 1.0f, 3, 4, 4, 0.0f);
+        this.setRotateAngle(this.ArmR4, -0.4553564f, -0.1829105f, 0.0f);
+        this.ShoulderR = new ModelRenderer((ModelBase)this, 16, 76);
+        this.ShoulderR.setRotationPoint(0.0f, 0.0f, 0.0f);
+        this.ShoulderR.addBox(-8.3f, -4.2f, 3.1f, 3, 5, 4, 0.0f);
+        this.setRotateAngle(this.ShoulderR, 0.7749262f, 0.1308997f, -0.20943952f);
+        this.LegR = new ModelRenderer((ModelBase)this, 96, 85);
+        this.LegR.setRotationPoint(-4.5f, 11.2f, 4.8f);
+        this.LegR.addBox(-2.3f, -1.2f, -0.9f, 2, 7, 2, 0.0f);
+        this.setRotateAngle(this.LegR, -0.11047934f, 0.0f, 0.10471976f);
+        this.Belly1 = new ModelRenderer((ModelBase)this, 0, 39);
+        this.Belly1.setRotationPoint(0.0f, 0.0f, 0.0f);
+        this.Belly1.addBox(-7.0f, 2.5f, -2.3f, 14, 10, 5, 0.0f);
+        this.setRotateAngle(this.Belly1, 0.7749262f, 0.0f, 0.0f);
+        this.LegL2 = new ModelRenderer((ModelBase)this, 73, 97);
+        this.LegL2.setRotationPoint(0.0f, 0.0f, 0.0f);
+        this.LegL2.addBox(0.1f, 5.6f, -2.7f, 4, 6, 4, 0.0f);
+        this.setRotateAngle(this.LegL2, 0.11047934f, 0.0f, 0.10471976f);
+        this.Extra20 = new ModelRenderer((ModelBase)this, 113, 3);
+        this.Extra20.setRotationPoint(0.0f, 0.0f, 0.0f);
+        this.Extra20.addBox(-2.5f, 2.7f, -14.1f, 1, 1, 2, 0.0f);
+        this.setRotateAngle(this.Extra20, 1.8430676f, 0.0f, 0.0f);
+        this.HeadBack = new ModelRenderer((ModelBase)this, 80, 48);
+        this.HeadBack.setRotationPoint(0.0f, 0.0f, 0.0f);
+        this.HeadBack.addBox(-2.0f, -7.7f, -2.9f, 4, 1, 5, 0.0f);
+        this.ArmR3 = new ModelRenderer((ModelBase)this, 19, 107);
+        this.ArmR3.setRotationPoint(0.0f, 0.0f, 0.0f);
+        this.ArmR3.addBox(-3.3f, 7.3f, 1.8f, 2, 4, 2, 0.0f);
+        this.setRotateAngle(this.ArmR3, -0.4553564f, 0.0f, 0.0f);
+        this.Head1 = new ModelRenderer((ModelBase)this, 80, 31);
+        this.Head1.setRotationPoint(0.0f, 0.0f, 0.0f);
+        this.Head1.addBox(-3.0f, -6.7f, -4.0f, 6, 6, 4, 0.0f);
+        this.BottomBase = new ModelRenderer((ModelBase)this, 46, 51);
+        this.BottomBase.setRotationPoint(0.0f, 0.0f, 0.0f);
+        this.BottomBase.addBox(-3.0f, 8.3f, 0.8f, 6, 7, 7, 0.0f);
+        this.setRotateAngle(this.BottomBase, 0.7749262f, 0.0f, 0.0f);
+        this.BottomBack2 = new ModelRenderer((ModelBase)this, 48, 43);
+        this.BottomBack2.setRotationPoint(0.0f, 0.0f, 0.0f);
+        this.BottomBack2.addBox(-2.5f, 16.8f, -3.8f, 5, 2, 5, 0.0f);
+        this.LegR2 = new ModelRenderer((ModelBase)this, 94, 97);
+        this.LegR2.setRotationPoint(0.0f, 0.0f, 0.0f);
+        this.LegR2.addBox(-4.1f, 5.6f, -2.7f, 4, 6, 4, 0.0f);
+        this.setRotateAngle(this.LegR2, 0.11047934f, 0.0f, -0.10471976f);
+        this.Belly2 = new ModelRenderer((ModelBase)this, 0, 56);
+        this.Belly2.setRotationPoint(0.0f, 0.0f, 0.0f);
+        this.Belly2.addBox(-6.51f, 3.7f, -3.8f, 13, 8, 2, 0.0f);
+        this.Extra22 = new ModelRenderer((ModelBase)this, 112, 0);
+        this.Extra22.setRotationPoint(0.0f, 0.0f, 0.0f);
+        this.Extra22.addBox(-1.5f, 2.7f, -14.6f, 3, 1, 1, 0.0f);
+        this.ArmL3 = new ModelRenderer((ModelBase)this, 3, 107);
+        this.ArmL3.setRotationPoint(0.0f, 0.0f, 0.0f);
+        this.ArmL3.addBox(1.0f, 7.3f, 1.8f, 2, 4, 2, 0.0f);
+        this.setRotateAngle(this.ArmL3, -0.4553564f, 0.0f, 0.0f);
+        this.Extra10 = new ModelRenderer((ModelBase)this, 113, 3);
+        this.Extra10.setRotationPoint(0.0f, 0.0f, 0.0f);
+        this.Extra10.addBox(-2.5f, 2.7f, -2.0f, 1, 1, 2, 0.0f);
+        this.ShoulderL = new ModelRenderer((ModelBase)this, 1, 76);
+        this.ShoulderL.setRotationPoint(0.0f, 0.0f, 0.0f);
+        this.ShoulderL.addBox(5.3f, -4.2f, 3.2f, 3, 5, 4, 0.0f);
+        this.setRotateAngle(this.ShoulderL, 0.7749262f, -0.1308997f, 0.20943952f);
+        this.Extra21 = new ModelRenderer((ModelBase)this, 113, 3);
+        this.Extra21.setRotationPoint(0.0f, 0.0f, 0.0f);
+        this.Extra21.addBox(1.5f, 2.7f, -14.1f, 1, 1, 2, 0.0f);
+        this.Back1 = new ModelRenderer((ModelBase)this, 45, 0);
+        this.Back1.setRotationPoint(0.0f, 0.0f, 0.0f);
+        this.Back1.addBox(-7.0f, 0.0f, 6.8f, 14, 12, 3, 0.0f);
+        this.BackTop1 = new ModelRenderer((ModelBase)this, 81, 0);
+        this.BackTop1.setRotationPoint(0.0f, 0.0f, 0.1f);
+        this.BackTop1.addBox(-3.5f, -5.4f, 7.5f, 7, 3, 5, 0.0f);
+        this.setRotateAngle(this.BackTop1, -0.19896753f, 0.0f, 0.0f);
+        this.HeadTop = new ModelRenderer((ModelBase)this, 83, 23);
+        this.HeadTop.setRotationPoint(0.0f, 0.0f, 0.0f);
+        this.HeadTop.addBox(-2.0f, -6.2f, -5.0f, 4, 5, 1, 0.0f);
+        this.Base1 = new ModelRenderer((ModelBase)this, 0, 0);
+        this.Base1.setRotationPoint(0.0f, 0.0f, 0.0f);
+        this.Base1.addBox(-6.5f, -6.8f, 0.0f, 13, 12, 7, 0.0f);
+        this.setRotateAngle(this.Base1, -0.7749262f, 0.0017453292f, 0.0f);
+        this.Extra11 = new ModelRenderer((ModelBase)this, 113, 3);
+        this.Extra11.setRotationPoint(0.0f, 0.0f, 0.0f);
+        this.Extra11.addBox(1.5f, 2.7f, -2.0f, 1, 1, 2, 0.0f);
+        this.LegL3 = new ModelRenderer((ModelBase)this, 66, 108);
+        this.LegL3.setRotationPoint(0.0f, 0.0f, 0.0f);
+        this.LegL3.addBox(-0.4f, 10.9f, -4.9f, 5, 2, 7, 0.0f);
+        this.setRotateAngle(this.LegL3, 0.11047934f, 0.0f, 0.10471976f);
+        this.Extra40 = new ModelRenderer((ModelBase)this, 104, 0);
+        this.Extra40.setRotationPoint(0.0f, 0.0f, 0.0f);
+        this.Extra40.addBox(2.9f, 1.3f, -1.9f, 2, 2, 1, 0.0f);
+        this.setRotateAngle(this.Extra40, 0.0f, -0.3630285f, -0.23387411f);
+        this.BottomBack = new ModelRenderer((ModelBase)this, 46, 66);
+        this.BottomBack.setRotationPoint(0.0f, 0.0f, 0.0f);
+        this.BottomBack.addBox(-3.5f, 12.9f, -5.4f, 7, 4, 8, 0.0f);
+        this.setRotateAngle(this.BottomBack, 0.7749262f, 0.0f, 0.0f);
+        this.BackTop2 = new ModelRenderer((ModelBase)this, 81, 10);
+        this.BackTop2.setRotationPoint(0.0f, 0.0f, 0.1f);
+        this.BackTop2.addBox(-3.0f, -6.2f, 7.9f, 6, 1, 4, 0.0f);
+        this.ArmR2 = new ModelRenderer((ModelBase)this, 17, 96);
+        this.ArmR2.setRotationPoint(0.0f, 0.0f, 0.0f);
+        this.ArmR2.addBox(-2.3f, 5.8f, 1.5f, 3, 7, 3, 0.0f);
+        this.setRotateAngle(this.ArmR2, -0.4553564f, 0.0f, 0.0f);
+        this.LegL = new ModelRenderer((ModelBase)this, 76, 85);
+        this.LegL.setRotationPoint(4.6f, 11.2f, 4.8f);
+        this.LegL.addBox(0.1f, -1.2f, -0.9f, 2, 7, 2, 0.0f);
+        this.setRotateAngle(this.LegL, -0.11052218f, 0.0f, -0.10471976f);
+        this.Back2 = new ModelRenderer((ModelBase)this, 47, 17);
+        this.Back2.setRotationPoint(0.0f, 0.0f, 0.1f);
+        this.Back2.addBox(-4.0f, -2.8f, 6.6f, 8, 13, 7, 0.0f);
+        this.LegR3 = new ModelRenderer((ModelBase)this, 93, 108);
+        this.LegR3.setRotationPoint(0.0f, 0.0f, 0.0f);
+        this.LegR3.addBox(-4.6f, 10.9f, -4.9f, 5, 2, 7, 0.0f);
+        this.setRotateAngle(this.LegR3, 0.11047934f, 0.0f, -0.10471976f);
+        this.HeadFront = new ModelRenderer((ModelBase)this, 80, 42);
+        this.HeadFront.setRotationPoint(0.0f, 0.0f, 0.0f);
+        this.HeadFront.addBox(-2.0f, -0.9f, -3.1f, 4, 1, 4, 0.0f);
+        this.BottomBase.addChild(this.BottomFront);
+        this.Extra10.addChild(this.Extra12);
+        this.Base1.addChild(this.Extra30);
+        this.Base1.addChild(this.Spine1);
+        this.Belly2.addChild(this.Belly3);
+        this.ArmL.addChild(this.ArmL2);
+        this.ArmL.addChild(this.ArmL4);
+        this.ArmR.addChild(this.ArmR4);
+        this.Base1.addChild(this.ShoulderR);
+        this.Base1.addChild(this.Belly1);
+        this.LegL.addChild(this.LegL2);
+        this.Base1.addChild(this.Extra20);
+        this.Head1.addChild(this.HeadBack);
+        this.ArmR.addChild(this.ArmR3);
+        this.Base1.addChild(this.Head1);
+        this.Base1.addChild(this.BottomBase);
+        this.BottomBack.addChild(this.BottomBack2);
+        this.LegR.addChild(this.LegR2);
+        this.Belly1.addChild(this.Belly2);
+        this.Extra20.addChild(this.Extra22);
+        this.ArmL.addChild(this.ArmL3);
+        this.Base1.addChild(this.Extra10);
+        this.Base1.addChild(this.ShoulderL);
+        this.Extra20.addChild(this.Extra21);
+        this.Spine1.addChild(this.Back1);
+        this.Back2.addChild(this.BackTop1);
+        this.Head1.addChild(this.HeadTop);
+        this.Extra10.addChild(this.Extra11);
+        this.LegL.addChild(this.LegL3);
+        this.Base1.addChild(this.Extra40);
+        this.BottomBase.addChild(this.BottomBack);
+        this.BackTop1.addChild(this.BackTop2);
+        this.ArmR.addChild(this.ArmR2);
+        this.Back1.addChild(this.Back2);
+        this.LegR.addChild(this.LegR3);
+        this.Head1.addChild(this.HeadFront);
+    }
+
+    public void render(Entity entity, float f, float f1, float f2, float f3, float f4, float f5) {
+        this.setRotationAngles(f, f1, f2, f3, f4, f5, entity);
+        GL11.glPushMatrix();
+        float[] sizes = new float[]{0.0f, 0.5f, 1.0f};
+        float size = 2.0f + sizes[((EntityRRMecha)entity).getType()];
+        GL11.glScalef((float)size, (float)size, (float)size);
+        GL11.glTranslatef((float)0.0f, (float)-0.9f, (float)0.0f);
+        this.ArmL.render(f5);
+        this.ArmR.render(f5);
+        this.LegR.render(f5);
+        this.Base1.render(f5);
+        this.LegL.render(f5);
+        GL11.glPopMatrix();
+    }
+
+    public void setRotateAngle(ModelRenderer modelRenderer, float x, float y, float z) {
+        modelRenderer.rotateAngleX = x;
+        modelRenderer.rotateAngleY = y;
+        modelRenderer.rotateAngleZ = z;
+    }
+
+    public void setRotationAngles(float par1, float par2, float par3, float par4, float par5, float par6, Entity par7Entity) {
+        float r = 360.0f;
+        float r2 = 180.0f;
+        float n4 = par4;
+        float n5 = par5;
+        this.LegR.rotateAngleX = -0.1f - MathHelper.cos((float)(par1 * 0.6662f)) * 1.2f * par2;
+        this.LegL.rotateAngleX = -0.1f - MathHelper.cos((float)(par1 * 0.6662f + (float)Math.PI)) * 1.2f * par2;
+        this.ArmR.rotateAngleX = -0.1f + MathHelper.cos((float)(par1 * 0.6662f)) * 1.2f * par2;
+        this.ArmL.rotateAngleX = -0.1f + MathHelper.cos((float)(par1 * 0.6662f + (float)Math.PI)) * 1.2f * par2;
+        this.LegR.rotateAngleY = 0.0f;
+        this.LegL.rotateAngleY = 0.0f;
+        this.ArmR.rotateAngleY = 0.0f;
+        this.ArmL.rotateAngleY = 0.0f;
+        super.setRotationAngles(par1, par2, par3, par4, par5, par6, par7Entity);
+    }
+}
+

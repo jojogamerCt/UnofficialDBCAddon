@@ -1,0 +1,228 @@
+/*
+ * Decompiled with CFR 0.152.
+ * 
+ * Could not load the following classes:
+ *  net.minecraft.client.model.ModelBase
+ *  net.minecraft.client.model.ModelRenderer
+ *  net.minecraft.entity.Entity
+ *  net.minecraft.util.MathHelper
+ */
+package JinRyuu.DragonBC.common.Npcs;
+
+import net.minecraft.client.model.ModelBase;
+import net.minecraft.client.model.ModelRenderer;
+import net.minecraft.entity.Entity;
+import net.minecraft.util.MathHelper;
+
+public class ModelAngelCognac
+extends ModelBase {
+    public ModelRenderer Head;
+    public ModelRenderer Body1;
+    public ModelRenderer LegR;
+    public ModelRenderer LegL;
+    public ModelRenderer ArmR;
+    public ModelRenderer ArmL;
+    public ModelRenderer Hair1;
+    public ModelRenderer Hair2;
+    public ModelRenderer Hair3;
+    public ModelRenderer Hair4;
+    public ModelRenderer Neck;
+    public ModelRenderer Body2;
+    public ModelRenderer NeckRing;
+    public ModelRenderer ClothF;
+    public ModelRenderer ClothB;
+    public ModelRenderer Body3;
+    public ModelRenderer NeckRing_1;
+    public ModelRenderer NeckRing_2;
+    public ModelRenderer NeckRing_3;
+    public ModelRenderer NeckRing_4;
+    public ModelRenderer NeckRing_5;
+    public ModelRenderer NeckRing_6;
+    public ModelRenderer NeckRing_7;
+    public ModelRenderer ClothF2;
+    public ModelRenderer ClothB2;
+    public ModelRenderer LegR2;
+    public ModelRenderer LegL2;
+    public ModelRenderer ShoulderArmorR;
+    public ModelRenderer ShoulderArmorL;
+
+    public ModelAngelCognac() {
+        this.textureWidth = 64;
+        this.textureHeight = 64;
+        this.LegL2 = new ModelRenderer((ModelBase)this, 17, 47);
+        this.LegL2.mirror = true;
+        this.LegL2.setRotationPoint(0.0f, 0.0f, 0.0f);
+        this.LegL2.addBox(-2.0f, 13.1f, -4.0f, 4, 2, 2, 0.0f);
+        this.Body1 = new ModelRenderer((ModelBase)this, 20, 18);
+        this.Body1.setRotationPoint(0.0f, -3.0f, 0.0f);
+        this.Body1.addBox(-4.0f, 0.0f, -1.8f, 8, 7, 4, 0.0f);
+        this.LegR = new ModelRenderer((ModelBase)this, 0, 33);
+        this.LegR.setRotationPoint(-1.9f, 9.0f, 0.0f);
+        this.LegR.addBox(-2.0f, 0.0f, -2.0f, 4, 15, 4, 0.0f);
+        this.Hair4 = new ModelRenderer((ModelBase)this, 54, 7);
+        this.Hair4.setRotationPoint(0.0f, 0.0f, 0.0f);
+        this.Hair4.addBox(-2.0f, -8.5f, -10.0f, 2, 5, 3, 0.0f);
+        this.LegR2 = new ModelRenderer((ModelBase)this, 17, 47);
+        this.LegR2.mirror = true;
+        this.LegR2.setRotationPoint(0.0f, 0.0f, 0.0f);
+        this.LegR2.addBox(-2.0f, 13.1f, -4.0f, 4, 2, 2, 0.0f);
+        this.Hair1 = new ModelRenderer((ModelBase)this, 31, 0);
+        this.Hair1.setRotationPoint(0.0f, 0.0f, 0.0f);
+        this.Hair1.addBox(-2.5f, -10.7f, -4.0f, 5, 4, 4, 0.0f);
+        this.ArmL = new ModelRenderer((ModelBase)this, 50, 16);
+        this.ArmL.mirror = true;
+        this.ArmL.setRotationPoint(5.0f, -1.3f, 0.0f);
+        this.ArmL.addBox(-1.0f, -1.5f, -1.8f, 3, 13, 4, -0.1f);
+        this.ClothF = new ModelRenderer((ModelBase)this, 44, 46);
+        this.ClothF.setRotationPoint(0.0f, 6.9f, -1.8f);
+        this.ClothF.addBox(-2.5f, 0.0f, 0.0f, 5, 5, 0, 0.0f);
+        this.setRotateAngle(this.ClothF, -0.09599311f, 0.0f, 0.0f);
+        this.NeckRing = new ModelRenderer((ModelBase)this, 0, 53);
+        this.NeckRing.setRotationPoint(0.0f, -0.8f, 1.1f);
+        this.NeckRing.addBox(-3.5f, -1.5f, 7.9f, 7, 1, 2, 0.0f);
+        this.setRotateAngle(this.NeckRing, 0.42428955f, 0.0f, 0.0f);
+        this.ClothF2 = new ModelRenderer((ModelBase)this, 33, 47);
+        this.ClothF2.setRotationPoint(0.0f, 4.9f, 0.0f);
+        this.ClothF2.addBox(-2.5f, 0.0f, 0.0f, 5, 10, 0, 0.0f);
+        this.setRotateAngle(this.ClothF2, 0.04363323f, 0.0f, 0.0f);
+        this.NeckRing_7 = new ModelRenderer((ModelBase)this, 0, 56);
+        this.NeckRing_7.setRotationPoint(0.0f, 0.0f, 0.0f);
+        this.NeckRing_7.addBox(-9.6f, -1.5f, -4.2f, 2, 1, 7, 0.0f);
+        this.setRotateAngle(this.NeckRing_7, 0.0f, -0.8609709f, 0.0f);
+        this.NeckRing_3 = new ModelRenderer((ModelBase)this, 0, 56);
+        this.NeckRing_3.setRotationPoint(0.0f, 0.0f, 0.0f);
+        this.NeckRing_3.addBox(-8.7f, -1.5f, -3.2f, 2, 1, 7, 0.0f);
+        this.setRotateAngle(this.NeckRing_3, 0.0f, -0.8290314f, 0.0f);
+        this.NeckRing_4 = new ModelRenderer((ModelBase)this, 0, 56);
+        this.NeckRing_4.setRotationPoint(0.0f, 0.0f, 0.0f);
+        this.NeckRing_4.addBox(-8.5f, -1.5f, -3.3f, 2, 1, 7, 0.0f);
+        this.setRotateAngle(this.NeckRing_4, 0.0f, -0.7382743f, 0.0f);
+        this.ShoulderArmorR = new ModelRenderer((ModelBase)this, 35, 9);
+        this.ShoulderArmorR.setRotationPoint(0.0f, 0.0f, 0.0f);
+        this.ShoulderArmorR.addBox(-4.0f, -1.7f, -1.8f, 5, 4, 4, 0.0f);
+        this.Neck = new ModelRenderer((ModelBase)this, 7, 17);
+        this.Neck.setRotationPoint(0.0f, 0.0f, 0.0f);
+        this.Neck.addBox(-2.0f, -1.3f, -0.8f, 4, 2, 2, 0.0f);
+        this.LegL = new ModelRenderer((ModelBase)this, 0, 33);
+        this.LegL.mirror = true;
+        this.LegL.setRotationPoint(1.9f, 9.0f, 0.0f);
+        this.LegL.addBox(-2.0f, 0.0f, -2.0f, 4, 15, 4, 0.0f);
+        this.NeckRing_5 = new ModelRenderer((ModelBase)this, 0, 56);
+        this.NeckRing_5.setRotationPoint(0.0f, 0.0f, 0.0f);
+        this.NeckRing_5.addBox(-8.3f, -1.5f, -3.3f, 2, 1, 7, 0.0f);
+        this.setRotateAngle(this.NeckRing_5, 0.0f, -0.7841764f, 0.0f);
+        this.ArmR = new ModelRenderer((ModelBase)this, 50, 16);
+        this.ArmR.setRotationPoint(-5.0f, -1.3f, 0.0f);
+        this.ArmR.addBox(-2.0f, -1.5f, -1.8f, 3, 13, 4, -0.1f);
+        this.NeckRing_1 = new ModelRenderer((ModelBase)this, 0, 56);
+        this.NeckRing_1.setRotationPoint(0.0f, 0.0f, 0.0f);
+        this.NeckRing_1.addBox(-9.7f, -1.5f, -2.9f, 2, 1, 7, 0.0f);
+        this.setRotateAngle(this.NeckRing_1, 0.0f, 0.8342674f, 0.0f);
+        this.Body3 = new ModelRenderer((ModelBase)this, 20, 37);
+        this.Body3.setRotationPoint(0.0f, 0.0f, 0.0f);
+        this.Body3.addBox(-4.0f, 9.0f, -2.0f, 8, 3, 4, 0.0f);
+        this.Hair2 = new ModelRenderer((ModelBase)this, 30, 0);
+        this.Hair2.setRotationPoint(0.0f, 0.0f, 0.0f);
+        this.Hair2.addBox(-2.3f, -11.1f, -7.2f, 4, 3, 6, 0.0f);
+        this.Body2 = new ModelRenderer((ModelBase)this, 23, 31);
+        this.Body2.setRotationPoint(0.0f, 0.0f, 0.0f);
+        this.Body2.addBox(-3.5f, 7.0f, -1.5f, 7, 2, 3, 0.0f);
+        this.Head = new ModelRenderer((ModelBase)this, 0, 0);
+        this.Head.setRotationPoint(0.0f, -4.0f, 0.0f);
+        this.Head.addBox(-3.5f, -7.5f, -4.0f, 7, 8, 8, -0.4f);
+        this.Hair3 = new ModelRenderer((ModelBase)this, 50, 0);
+        this.Hair3.setRotationPoint(0.0f, 0.0f, 0.0f);
+        this.Hair3.addBox(-2.2f, -10.4f, -9.2f, 3, 3, 4, 0.0f);
+        this.ShoulderArmorL = new ModelRenderer((ModelBase)this, 35, 9);
+        this.ShoulderArmorL.mirror = true;
+        this.ShoulderArmorL.setRotationPoint(0.0f, 0.0f, 0.0f);
+        this.ShoulderArmorL.addBox(-1.0f, -1.7f, -1.8f, 5, 4, 4, 0.0f);
+        this.ClothB = new ModelRenderer((ModelBase)this, 44, 46);
+        this.ClothB.setRotationPoint(0.0f, 7.0f, 2.2f);
+        this.ClothB.addBox(-2.5f, 0.0f, 0.0f, 5, 5, 0, 0.0f);
+        this.setRotateAngle(this.ClothB, 0.054105207f, 0.0f, 0.0f);
+        this.NeckRing_6 = new ModelRenderer((ModelBase)this, 19, 54);
+        this.NeckRing_6.setRotationPoint(0.0f, 0.0f, 0.0f);
+        this.NeckRing_6.addBox(-8.3f, -1.5f, -5.5f, 2, 1, 9, 0.0f);
+        this.setRotateAngle(this.NeckRing_6, 0.0f, -0.7696902f, 0.0f);
+        this.NeckRing_2 = new ModelRenderer((ModelBase)this, 19, 54);
+        this.NeckRing_2.setRotationPoint(0.0f, 0.0f, 0.0f);
+        this.NeckRing_2.addBox(-8.7f, -1.5f, -3.9f, 2, 1, 9, 0.0f);
+        this.setRotateAngle(this.NeckRing_2, 0.0f, -0.82833326f, 0.0f);
+        this.ClothB2 = new ModelRenderer((ModelBase)this, 33, 47);
+        this.ClothB2.setRotationPoint(0.0f, 5.0f, 0.0f);
+        this.ClothB2.addBox(-2.5f, 0.0f, 0.0f, 5, 10, 0, 0.0f);
+        this.setRotateAngle(this.ClothB2, -0.006981317f, 0.0f, 0.0f);
+        this.LegL.addChild(this.LegL2);
+        this.Hair3.addChild(this.Hair4);
+        this.LegR.addChild(this.LegR2);
+        this.Head.addChild(this.Hair1);
+        this.Body1.addChild(this.ClothF);
+        this.Body1.addChild(this.NeckRing);
+        this.ClothF.addChild(this.ClothF2);
+        this.NeckRing_6.addChild(this.NeckRing_7);
+        this.NeckRing_2.addChild(this.NeckRing_3);
+        this.NeckRing_3.addChild(this.NeckRing_4);
+        this.ArmR.addChild(this.ShoulderArmorR);
+        this.Body1.addChild(this.Neck);
+        this.NeckRing_4.addChild(this.NeckRing_5);
+        this.NeckRing.addChild(this.NeckRing_1);
+        this.Body2.addChild(this.Body3);
+        this.Hair1.addChild(this.Hair2);
+        this.Body1.addChild(this.Body2);
+        this.Hair2.addChild(this.Hair3);
+        this.ArmL.addChild(this.ShoulderArmorL);
+        this.Body1.addChild(this.ClothB);
+        this.NeckRing_5.addChild(this.NeckRing_6);
+        this.NeckRing_1.addChild(this.NeckRing_2);
+        this.ClothB.addChild(this.ClothB2);
+    }
+
+    public void render(Entity entity, float f, float f1, float f2, float f3, float f4, float f5) {
+        this.setRotationAngles(f, f1, f2, f3, f4, f5, entity);
+        this.LegL.render(f5);
+        this.Head.render(f5);
+        this.ArmL.render(f5);
+        this.ArmR.render(f5);
+        this.Body1.render(f5);
+        this.LegR.render(f5);
+    }
+
+    public void setRotateAngle(ModelRenderer modelRenderer, float x, float y, float z) {
+        modelRenderer.rotateAngleX = x;
+        modelRenderer.rotateAngleY = y;
+        modelRenderer.rotateAngleZ = z;
+    }
+
+    public void setRotationAngles(float par1, float par2, float par3, float par4, float par5, float par6, Entity par7Entity) {
+        int calc = par7Entity.ticksExisted;
+        if (calc > 100) {
+            calc -= 100;
+        }
+        float r = 360.0f;
+        float r2 = 180.0f;
+        float n4 = par4;
+        float n5 = par5;
+        this.Head.rotateAngleY = n4 / (r2 / (float)Math.PI);
+        this.Head.rotateAngleX = n5 / (r2 / (float)Math.PI);
+        float ex = par7Entity.ticksExisted;
+        float r3 = MathHelper.cos((float)(ex * 0.14f)) * 0.1f;
+        float r4 = MathHelper.cos((float)(ex / 8.0f)) / 5.0f + 0.1f;
+        r3 = MathHelper.cos((float)(ex * 0.14f)) * 0.1f;
+        r4 = MathHelper.cos((float)(ex / 8.0f)) / 3.0f - 0.2f;
+        this.LegR.rotateAngleX = -0.0f - MathHelper.cos((float)(par1 * 0.6662f)) * 1.2f * par2;
+        this.LegL.rotateAngleX = -0.0f + MathHelper.cos((float)(par1 * 0.6662f)) * 1.2f * par2;
+        this.ArmR.rotateAngleX = -0.0f + MathHelper.cos((float)(par1 * 0.6662f)) * 1.2f * par2;
+        this.ArmL.rotateAngleX = -0.0f - MathHelper.cos((float)(par1 * 0.6662f)) * 1.2f * par2;
+        this.LegR.rotateAngleY = 0.0f;
+        this.LegL.rotateAngleY = 0.0f;
+        this.ArmR.rotateAngleY = 0.0f;
+        this.ArmL.rotateAngleY = 0.0f;
+        this.ClothF.rotateAngleX = -0.15f + this.LegR.rotateAngleX * (float)(this.LegR.rotateAngleX >= 0.0f ? -1 : 1) * 1.0f;
+        this.ClothF2.rotateAngleX = -0.15f + this.LegR.rotateAngleX * (float)(this.LegR.rotateAngleX >= 0.0f ? -1 : 1) * 1.0f;
+        this.ClothB.rotateAngleX = 0.15f + this.LegL.rotateAngleX * (float)(this.LegR.rotateAngleX >= 0.0f ? -1 : 1) * 1.0f;
+        this.ClothB2.rotateAngleX = 0.15f + this.LegL.rotateAngleX * (float)(this.LegR.rotateAngleX >= 0.0f ? -1 : 1) * 1.0f;
+        super.setRotationAngles(par1, par2, par3, par4, par5, par6, par7Entity);
+    }
+}
+
