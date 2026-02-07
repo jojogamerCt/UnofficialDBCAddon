@@ -5,13 +5,13 @@ import net.minecraft.client.settings.KeyBinding;
 
 import org.lwjgl.input.Keyboard;
 
-import cpw.mods.fml.client.registry.ClientRegistry;
-import cpw.mods.fml.common.eventhandler.SubscribeEvent;
-import cpw.mods.fml.common.gameevent.InputEvent;
-
 import com.jojogamerct.dbcaddon.network.NetworkHandler;
 import com.jojogamerct.dbcaddon.network.UltraEgoActivatePacket;
 import com.jojogamerct.dbcaddon.transformation.UltraEgoData;
+
+import cpw.mods.fml.client.registry.ClientRegistry;
+import cpw.mods.fml.common.eventhandler.SubscribeEvent;
+import cpw.mods.fml.common.gameevent.InputEvent;
 
 /**
  * Client-side key binding handler for toggling Ultra Ego.

@@ -8,16 +8,17 @@ import net.minecraft.util.EnumChatFormatting;
 import net.minecraftforge.event.entity.living.LivingAttackEvent;
 import net.minecraftforge.event.entity.living.LivingHurtEvent;
 
-import cpw.mods.fml.common.eventhandler.EventPriority;
-import cpw.mods.fml.common.eventhandler.SubscribeEvent;
-import cpw.mods.fml.common.gameevent.PlayerEvent;
-import cpw.mods.fml.common.gameevent.TickEvent;
-
 import com.jojogamerct.dbcaddon.config.UltraEgoConfig;
 import com.jojogamerct.dbcaddon.network.NetworkHandler;
 import com.jojogamerct.dbcaddon.network.UltraEgoSyncPacket;
 import com.jojogamerct.dbcaddon.transformation.UltraEgoData;
 import com.jojogamerct.dbcaddon.util.DBCPlayerHelper;
+import com.jojogamerct.dbcaddon.util.DebugHelper;
+
+import cpw.mods.fml.common.eventhandler.EventPriority;
+import cpw.mods.fml.common.eventhandler.SubscribeEvent;
+import cpw.mods.fml.common.gameevent.PlayerEvent;
+import cpw.mods.fml.common.gameevent.TickEvent;
 
 /**
  * Core event handler for the Ultra Ego transformation.
@@ -56,6 +57,7 @@ public class UltraEgoEventHandler {
                 // Out of Ki - force deactivation
                 newKi = 0;
                 DBCPlayerHelper.setCurrentEnergy(player, newKi);
+                DebugHelper.logTick("Ki depleted for " + player.getCommandSenderName() + " - force deactivating");
                 forceDeactivate(player, "Your Ki has been depleted. Ultra Ego deactivated.");
                 return;
             }
@@ -79,10 +81,24 @@ public class UltraEgoEventHandler {
         }
 
         // --- Periodic Sync to Client (every 2 seconds) ---
-        if (UltraEgoData.getActiveTicks(player) % 40 == 0 && player instanceof EntityPlayerMP) {
-            NetworkHandler.INSTANCE.sendTo(
-                new UltraEgoSyncPacket(true, UltraEgoData.getBattleDamageBonus(player)),
-                (EntityPlayerMP) player);
+        int activeTicks = UltraEgoData.getActiveTicks(player);
+        if (activeTicks % 40 == 0 && player instanceof EntityPlayerMP) {
+            double bonus = UltraEgoData.getBattleDamageBonus(player);
+            NetworkHandler.INSTANCE.sendTo(new UltraEgoSyncPacket(true, bonus), (EntityPlayerMP) player);
+
+            // Log tick state every sync (every 2 seconds instead of every tick)
+            DebugHelper.logTick(
+                "Tick sync [" + player.getCommandSenderName()
+                    + "] activeTicks="
+                    + activeTicks
+                    + " battleBonus="
+                    + String.format("%.3f", bonus)
+                    + " Ki="
+                    + DBCPlayerHelper.getCurrentEnergy(player)
+                    + "/"
+                    + DBCPlayerHelper.getMaxEnergy(player)
+                    + " ticksSinceHit="
+                    + ticksSinceHit);
         }
     }
 
@@ -104,10 +120,23 @@ public class UltraEgoEventHandler {
             UltraEgoConfig.maxAttributeMultiplier);
 
         // Apply the multiplier to outgoing damage
-        // DBC already applies its own transformation multiplier, so we apply ours on top
+        float originalDamage = event.ammount;
         float hakaiBonus = (float) (event.ammount * UltraEgoConfig.hakaiDamageBonus);
         float multipliedDamage = (float) (event.ammount * multiplier);
         event.ammount = multipliedDamage + hakaiBonus;
+
+        DebugHelper.logDamage(
+            "OUTGOING [" + attacker.getCommandSenderName()
+                + " -> "
+                + event.entityLiving.getCommandSenderName()
+                + "] original="
+                + String.format("%.1f", originalDamage)
+                + " multiplier="
+                + String.format("%.2f", multiplier)
+                + " hakai="
+                + String.format("%.1f", hakaiBonus)
+                + " final="
+                + String.format("%.1f", event.ammount));
     }
 
     /**
@@ -126,19 +155,34 @@ public class UltraEgoEventHandler {
         if (event.source == DamageSource.outOfWorld) return;
 
         // Apply damage reduction
+        float originalDamage = event.ammount;
         float reducedDamage = (float) (event.ammount * (1.0 - UltraEgoConfig.damageReductionBase));
         event.ammount = reducedDamage;
 
         // Increase battle damage bonus based on damage taken relative to max body
         long maxBody = DBCPlayerHelper.getMaxBody(player);
+        double bonusGain;
         if (maxBody > 0) {
             double damageRatio = event.ammount / (double) maxBody;
-            double bonusGain = damageRatio * UltraEgoConfig.battleDamageScaling * 100.0;
-            UltraEgoData.addBattleDamageBonus(player, bonusGain, UltraEgoConfig.maxBattleDamageBonus);
+            bonusGain = damageRatio * UltraEgoConfig.battleDamageScaling * 100.0;
         } else {
             // Fallback: flat bonus per hit if maxBody is 0
-            UltraEgoData.addBattleDamageBonus(player, 0.1, UltraEgoConfig.maxBattleDamageBonus);
+            bonusGain = 0.1;
         }
+        UltraEgoData.addBattleDamageBonus(player, bonusGain, UltraEgoConfig.maxBattleDamageBonus);
+
+        DebugHelper.logDamage(
+            "INCOMING [" + player.getCommandSenderName()
+                + "] source="
+                + event.source.getDamageType()
+                + " original="
+                + String.format("%.1f", originalDamage)
+                + " reduced="
+                + String.format("%.1f", reducedDamage)
+                + " bonusGain="
+                + String.format("%.4f", bonusGain)
+                + " totalBonus="
+                + String.format("%.3f", UltraEgoData.getBattleDamageBonus(player)));
     }
 
     /**
@@ -149,6 +193,8 @@ public class UltraEgoEventHandler {
         // Deactivate on logout to prevent lingering state
         if (UltraEgoData.isActive(event.player)) {
             UltraEgoData.setActive(event.player, false);
+            DebugHelper.logActivation(
+                "Player " + event.player.getCommandSenderName() + " logged out with Ultra Ego active - deactivated");
         }
         UltraEgoData.removePlayer(event.player);
     }
@@ -163,17 +209,18 @@ public class UltraEgoEventHandler {
 
         if (player.getHealth() <= 0 && UltraEgoData.isActive(player)) {
             UltraEgoData.setActive(player, false);
+            DebugHelper
+                .logActivation("Player " + player.getCommandSenderName() + " died with Ultra Ego active - deactivated");
         }
     }
 
     private void forceDeactivate(EntityPlayer player, String reason) {
         UltraEgoData.setActive(player, false);
         player.addChatMessage(new ChatComponentText(EnumChatFormatting.RED + reason));
+        DebugHelper.logActivation(player, "Force deactivated: " + reason);
 
         if (player instanceof EntityPlayerMP) {
-            NetworkHandler.INSTANCE.sendTo(
-                new UltraEgoSyncPacket(false, 0.0),
-                (EntityPlayerMP) player);
+            NetworkHandler.INSTANCE.sendTo(new UltraEgoSyncPacket(false, 0.0), (EntityPlayerMP) player);
         }
     }
 }

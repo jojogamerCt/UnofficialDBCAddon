@@ -2,11 +2,11 @@ package com.jojogamerct.dbcaddon;
 
 import net.minecraftforge.common.MinecraftForge;
 
+import com.jojogamerct.dbcaddon.handler.UltraEgoKeyHandler;
+
 import cpw.mods.fml.common.FMLCommonHandler;
 import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
-
-import com.jojogamerct.dbcaddon.handler.UltraEgoKeyHandler;
 
 public class ClientProxy extends CommonProxy {
 
@@ -25,6 +25,8 @@ public class ClientProxy extends CommonProxy {
         // Register key input handler
         UltraEgoKeyHandler keyHandler = new UltraEgoKeyHandler();
         MinecraftForge.EVENT_BUS.register(keyHandler);
-        FMLCommonHandler.instance().bus().register(keyHandler);
+        FMLCommonHandler.instance()
+            .bus()
+            .register(keyHandler);
     }
 }

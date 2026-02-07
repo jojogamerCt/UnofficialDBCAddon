@@ -6,8 +6,7 @@ import net.minecraftforge.common.config.Configuration;
 
 public class UltraEgoConfig {
 
-    // Activation requirements
-    public static int requiredLevel = 200;
+    // Activation requirements (level requirement removed - only TP cost remains)
     public static long tpCost = 75000;
 
     // Stat multipliers (percentage-based, applied to all combat stats)
@@ -38,52 +37,92 @@ public class UltraEgoConfig {
 
         config.load();
 
-        requiredLevel = config.getInt(
-            "requiredLevel", "ultra_ego", requiredLevel, 1, 10000,
-            "Minimum DBC level required to activate Ultra Ego");
-
         tpCost = config.getInt(
-            "tpCost", "ultra_ego", (int) tpCost, 0, Integer.MAX_VALUE,
-            "Training Points cost to unlock Ultra Ego");
+            "tpCost",
+            "ultra_ego",
+            (int) tpCost,
+            0,
+            Integer.MAX_VALUE,
+            "Training Points cost to unlock Ultra Ego (one-time cost)");
 
         baseAttributeMultiplier = config.getFloat(
-            "baseAttributeMultiplier", "ultra_ego", (float) baseAttributeMultiplier, 1.0f, 20.0f,
+            "baseAttributeMultiplier",
+            "ultra_ego",
+            (float) baseAttributeMultiplier,
+            1.0f,
+            20.0f,
             "Base stat multiplier when Ultra Ego is active");
 
         maxAttributeMultiplier = config.getFloat(
-            "maxAttributeMultiplier", "ultra_ego", (float) maxAttributeMultiplier, 1.0f, 30.0f,
+            "maxAttributeMultiplier",
+            "ultra_ego",
+            (float) maxAttributeMultiplier,
+            1.0f,
+            30.0f,
             "Maximum stat multiplier at full battle damage bonus");
 
         battleDamageScaling = config.getFloat(
-            "battleDamageScaling", "ultra_ego", (float) battleDamageScaling, 0.01f, 1.0f,
+            "battleDamageScaling",
+            "ultra_ego",
+            (float) battleDamageScaling,
+            0.01f,
+            1.0f,
             "How fast the battle damage bonus increases when taking hits");
 
         maxBattleDamageBonus = config.getFloat(
-            "maxBattleDamageBonus", "ultra_ego", (float) maxBattleDamageBonus, 0.0f, 20.0f,
+            "maxBattleDamageBonus",
+            "ultra_ego",
+            (float) maxBattleDamageBonus,
+            0.0f,
+            20.0f,
             "Maximum additional multiplier from battle damage");
 
         battleDamageDecayTicks = config.getInt(
-            "battleDamageDecayTicks", "ultra_ego", battleDamageDecayTicks, 0, 72000,
+            "battleDamageDecayTicks",
+            "ultra_ego",
+            battleDamageDecayTicks,
+            0,
+            72000,
             "Ticks before battle damage bonus starts decaying (20 ticks = 1 second)");
 
         battleDamageDecayRate = config.getFloat(
-            "battleDamageDecayRate", "ultra_ego", (float) battleDamageDecayRate, 0.0f, 1.0f,
+            "battleDamageDecayRate",
+            "ultra_ego",
+            (float) battleDamageDecayRate,
+            0.0f,
+            1.0f,
             "Rate at which battle damage bonus decays per tick after decay starts");
 
         kiDrainPercentPerSecond = config.getFloat(
-            "kiDrainPercentPerSecond", "ultra_ego", (float) kiDrainPercentPerSecond, 0.0f, 100.0f,
+            "kiDrainPercentPerSecond",
+            "ultra_ego",
+            (float) kiDrainPercentPerSecond,
+            0.0f,
+            100.0f,
             "Percentage of max Ki drained per second while Ultra Ego is active");
 
         staminaDrainPercentPerSecond = config.getFloat(
-            "staminaDrainPercentPerSecond", "ultra_ego", (float) staminaDrainPercentPerSecond, 0.0f, 100.0f,
+            "staminaDrainPercentPerSecond",
+            "ultra_ego",
+            (float) staminaDrainPercentPerSecond,
+            0.0f,
+            100.0f,
             "Percentage of max Stamina drained per second while Ultra Ego is active");
 
         damageReductionBase = config.getFloat(
-            "damageReductionBase", "ultra_ego", (float) damageReductionBase, 0.0f, 0.95f,
+            "damageReductionBase",
+            "ultra_ego",
+            (float) damageReductionBase,
+            0.0f,
+            0.95f,
             "Base damage reduction while in Ultra Ego form");
 
         hakaiDamageBonus = config.getFloat(
-            "hakaiDamageBonus", "ultra_ego", (float) hakaiDamageBonus, 0.0f, 5.0f,
+            "hakaiDamageBonus",
+            "ultra_ego",
+            (float) hakaiDamageBonus,
+            0.0f,
+            5.0f,
             "Bonus destruction damage multiplier added to attacks");
 
         if (config.hasChanged()) {

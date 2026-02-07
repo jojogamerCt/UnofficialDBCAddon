@@ -6,6 +6,13 @@ import net.minecraft.nbt.NBTTagCompound;
 /**
  * Helper class to read and write DBC player data via NBT.
  * Uses direct NBT access to avoid compile-time dependency on DBC/JRMCore classes.
+ *
+ * NBT data is stored under "PlayerPersisted" in the player's entity data,
+ * matching how JRMCoreH.nbt(entity, "pres") resolves the compound tag.
+ *
+ * IMPORTANT: DBC does NOT store a "level" NBT key. The player level is
+ * calculated from attributes: level = (sum of all 6 attributes / 5) - 11.
+ * See JRMCoreH.getPlayerLevel(int) in the DBC source.
  */
 public class DBCPlayerHelper {
 
@@ -17,25 +24,23 @@ public class DBCPlayerHelper {
     public static final int RACE_ARCOSIAN = 4;
     public static final int RACE_MAJIN = 5;
 
-    // DBC NBT Keys
+    // DBC NBT Keys (verified against JRMCoreH.java decompiled source)
     private static final String NBT_RACE = "jrmcRace";
     private static final String NBT_STATE = "jrmcState";
     private static final String NBT_STATE2 = "jrmcState2";
     private static final String NBT_STATUS_EFFECTS = "jrmcStatusEff";
-    private static final String NBT_LEVEL = "jrmcLvl";
     private static final String NBT_BODY = "jrmcBdy";
     private static final String NBT_BODY_MAX = "jrmcBdyMax";
     private static final String NBT_ENERGY = "jrmcEnrgy";
     private static final String NBT_ENERGY_MAX = "jrmcEnrgyMax";
     private static final String NBT_STAMINA = "jrmcStamina";
     private static final String NBT_STAMINA_MAX = "jrmcStaminaMax";
-    private static final String NBT_TP = "jrmcTP";
+    private static final String NBT_TP = "jrmcTpint"; // Correct key from JRMCoreH.TPint
     private static final String NBT_RELEASE = "jrmcRelease";
 
-    // DBC Attribute NBT Keys (integer format)
-    private static final String[] ATTR_KEYS = {
-        "jrmcStrI", "jrmcDexI", "jrmcCnsI", "jrmcWilI", "jrmcIntI", "jrmcCncI"
-    };
+    // DBC Attribute NBT Keys (integer format, from JRMCoreH.AttrbtNbtI)
+    private static final String[] ATTR_KEYS = { "jrmcStrI", "jrmcDexI", "jrmcCnsI", "jrmcWilI", "jrmcIntI",
+        "jrmcCncI" };
 
     // Attribute indices
     public static final int ATTR_STR = 0;
@@ -53,6 +58,7 @@ public class DBCPlayerHelper {
 
     /**
      * Gets the player's persisted NBT data (where DBC stores player info).
+     * Mirrors the logic in JRMCoreH.nbt(Entity, "pres").
      */
     public static NBTTagCompound getPersistedData(EntityPlayer player) {
         NBTTagCompound entityData = player.getEntityData();
@@ -95,13 +101,39 @@ public class DBCPlayerHelper {
         return hasStatusEffect(player, SE_ULTRA_INSTINCT);
     }
 
-    public static int getLevel(EntityPlayer player) {
-        return getPersistedData(player).getInteger(NBT_LEVEL);
-    }
-
+    /**
+     * Gets a single attribute value by index.
+     */
     public static int getAttribute(EntityPlayer player, int attrIndex) {
         if (attrIndex < 0 || attrIndex >= ATTR_KEYS.length) return 0;
         return getPersistedData(player).getInteger(ATTR_KEYS[attrIndex]);
+    }
+
+    /**
+     * Gets all 6 attribute values as an array: [STR, DEX, CON, WIL, MND, CNC].
+     */
+    public static int[] getAllAttributes(EntityPlayer player) {
+        NBTTagCompound nbt = getPersistedData(player);
+        int[] attrs = new int[ATTR_KEYS.length];
+        for (int i = 0; i < ATTR_KEYS.length; i++) {
+            attrs[i] = nbt.getInteger(ATTR_KEYS[i]);
+        }
+        return attrs;
+    }
+
+    /**
+     * Calculates the player's DBC level from their attributes.
+     * Formula: level = (sum of all 6 attributes / 5) - 11
+     * This matches JRMCoreH.getPlayerLevel(int all) exactly.
+     */
+    public static int getLevel(EntityPlayer player) {
+        int[] attrs = getAllAttributes(player);
+        int sum = 0;
+        for (int attr : attrs) {
+            sum += attr;
+        }
+        int level = sum / 5 - 11;
+        return level < 0 ? 0 : level;
     }
 
     public static int getStrength(EntityPlayer player) {
@@ -148,11 +180,17 @@ public class DBCPlayerHelper {
         return getPersistedData(player).getByte(NBT_RELEASE);
     }
 
-    public static long getTP(EntityPlayer player) {
-        return getPersistedData(player).getLong(NBT_TP);
+    /**
+     * Gets Training Points. DBC stores TP as an integer via JRMCoreH.getInt(player, "jrmcTpint").
+     */
+    public static int getTP(EntityPlayer player) {
+        return getPersistedData(player).getInteger(NBT_TP);
     }
 
-    public static void setTP(EntityPlayer player, long tp) {
-        getPersistedData(player).setLong(NBT_TP, tp);
+    /**
+     * Sets Training Points. DBC stores TP as an integer via JRMCoreH.setInt(value, player, "jrmcTpint").
+     */
+    public static void setTP(EntityPlayer player, int tp) {
+        getPersistedData(player).setInteger(NBT_TP, tp);
     }
 }
