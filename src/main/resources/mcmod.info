@@ -3,19 +3,19 @@
 	"modList": [{
 		"modid": "${modId}",
 		"name": "${modName}",
-		"description": "An example mod for Minecraft 1.7.10 with Forge focused on a stable setup.",
+		"description": "An unofficial addon for Dragon Block C that adds new transformations, races, and mechanics.",
 		"version": "${modVersion}",
 		"mcversion": "${minecraftVersion}",
-		"url": "https://github.com/SinTh0r4s/MyMod",
+		"url": "https://github.com/jojogamerCt/UnofficialDBCAddon",
 		"updateUrl": "",
-		"authorList": ["SinTho0r4s"],
-		"credits": "",
+		"authorList": ["jojogamerCt"],
+		"credits": "JinRyuu for Dragon Block C",
 		"logoFile": "",
 		"screenshots": [],
 		"parent": "",
-		"requiredMods": [],
-		"dependencies": [],
+		"requiredMods": ["jinryuujrmcore", "jinryuudragonblockc"],
+		"dependencies": ["jinryuujrmcore", "jinryuudragonblockc"],
 		"dependants": [],
-		"useDependencyInformation": false
+		"useDependencyInformation": true
 	}]
 }
